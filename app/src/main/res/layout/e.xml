@@ -14,10 +14,10 @@
 
         <ImageView
             android:id="@+id/image"
-            android:background="@drawable/touxiang"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            android:background="@drawable/touxiang" />
 
         <TextView
             android:id="@+id/zh"
@@ -79,7 +79,7 @@
             android:layout_gravity="left|center"
             android:layout_margin="10dp"
             android:gravity="center"
-            android:text="订单列表"
+            android:text="充值记录"
             android:textColor="@color/black"
             android:textSize="18dp" />
 

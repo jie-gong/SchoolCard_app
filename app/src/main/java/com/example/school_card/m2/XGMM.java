@@ -41,6 +41,9 @@ public class XGMM extends AppCompatActivity {
         butt1.setOnClickListener(view -> {
             upPass();
         });
+        ivFh.setOnClickListener(v -> {
+            finish();
+        });
     }
 
     private void upPass() {

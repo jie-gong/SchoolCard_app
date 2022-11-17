@@ -54,6 +54,7 @@ public class LoginDlActivity extends AppCompatActivity {
                 Toast.makeText(this, "账号或密码不能为空", Toast.LENGTH_SHORT).show();
             } else {
                 Okhttp();
+                finish();
             }
         });
         text1.setOnClickListener(v -> {

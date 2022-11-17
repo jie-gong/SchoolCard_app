@@ -1,6 +1,7 @@
 package com.example.school_card.m2_fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +75,6 @@ public class Fragment_main_three extends Fragment {
 
     private ArrayList<News_List_Bean> beans;
     private News news;
-
     private void getList() {
         beans = new ArrayList<>();
         new HttpUtil()
@@ -82,7 +82,6 @@ public class Fragment_main_three extends Fragment {
                     @Override
                     public void onFailure(Call call, IOException e) {
                     }
-
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
 //                        Log.d("SB", String.valueOf(beans.size()));
@@ -91,7 +90,7 @@ public class Fragment_main_three extends Fragment {
                             beans = new Gson().fromJson(new JSONObject(s).optJSONArray("rows").toString(), new TypeToken<List<News_List_Bean>>() {
                             }.getType());
                             news = new News(beans);
-//                            Log.d("SB", String.valueOf(beans.size()));
+                            Log.d("SB", String.valueOf(beans.size()));
                             getActivity().runOnUiThread(() -> {
                                 ListViewThree.setAdapter(news);
                                 ListAdapter listAdapter = ListViewThree.getAdapter();

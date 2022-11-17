@@ -24,7 +24,9 @@ import com.example.school_card.Okhttp.OkHttpTo;
 import com.example.school_card.R;
 import com.example.school_card.bean.Banner_Bean;
 import com.example.school_card.m2.GRXX;
+import com.example.school_card.m2.GetCard;
 import com.example.school_card.m2.XGMM;
+import com.example.school_card.util.SPUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -86,13 +88,17 @@ public class Fragment_main_five extends Fragment {
         zh.setOnClickListener(v -> {
             Toast.makeText(requireContext(), "昵称不支持修改，请联系管理员", Toast.LENGTH_SHORT).show();
         });
+        ddlb.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext(), GetCard.class);
+            startActivity(intent);
+        });
         getInformation();
     }
 
-    private List<Banner_Bean> beans;
+    List<Banner_Bean> beans = new ArrayList<>();
 
     private void getInformation() {
-        beans = new ArrayList<>();
+
         new HttpUtil().sendResult("/prod-api/api/rotation/list", "", "GET", new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -112,14 +118,12 @@ public class Fragment_main_five extends Fragment {
     }
 
     public void OkHttp() {
-        //获得SharedPreferences对象
-        SharedPreferences pref = getActivity().getSharedPreferences("userInfo", MODE_PRIVATE);//将内容存放到userinfo的文档内
-        editor = pref.edit();
-        String zhang = pref.getString("id", "");//获取账号
+        SPUtil spUtil = new SPUtil();
+        String sp = spUtil.getSp(requireContext());
         new OkHttpTo()
                 .setType("POST")
                 .setUrl("/card/student")
-                .setJsonObject("studentid", zhang)
+                .setJsonObject("studentid", sp)
                 .setOkHttpLo(jsonObject -> {
                     if (jsonObject.optString("code").equals("200")) {
                         try {

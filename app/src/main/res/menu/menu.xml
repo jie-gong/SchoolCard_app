@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/grzx"
+            android:title="个人中心" />
+        <item
+            android:id="@+id/xgzl"
+            android:title="修改资料" />
+        <item
+            android:id="@+id/qhzh"
+            android:title="切换职业" />
+        <item
+            android:id="@+id/fx"
+            android:title="分享软件给朋友" />
+        <item
+            android:id="@+id/tc"
+            android:title="退出软件" />
+    </group>
+</menu>

@@ -21,7 +21,7 @@ import okhttp3.Response;
 
 public class OkHttpTo extends Thread {
     private String type;
-    private String url = "http://192.168.1.100:8000";
+    private String url = "http://10.212.153.72:8000";
     private OkHttpLo okHttpLo;
     private final JSONObject jsonObject = new JSONObject();
 

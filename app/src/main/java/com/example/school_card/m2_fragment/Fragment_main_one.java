@@ -22,6 +22,7 @@ import com.example.school_card.R;
 import com.example.school_card.Repairs;
 import com.example.school_card.adapter.Main2_Announce_Adapter;
 import com.example.school_card.bean.Announce_bean;
+import com.example.school_card.m2.GetBlance;
 import com.example.school_card.m2.MainActivity2;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -64,7 +65,7 @@ public class Fragment_main_one extends Fragment {
             MainActivity2.setIndex2();
         });
         xybx.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), Repairs.class);
+            Intent intent = new Intent(requireContext(), GetBlance.class);
             startActivity(intent);
         });
         qdjl.setOnClickListener(v -> {

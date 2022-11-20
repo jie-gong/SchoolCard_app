@@ -57,7 +57,7 @@ public class Main2_Record_Adapter extends BaseAdapter {
         if (bean.getCreateTime() == null) {
             viewHolder.newsTitleGz.setText(bean.getBalance());
         } else {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日HH点mm分ss秒");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH点mm分ss秒");
             String format = sdf.format(bean.getCreateTime());
             viewHolder.newsDateTime.setText(format);
             viewHolder.newsTitleGz.setText("充值金额"+bean.getBalance());

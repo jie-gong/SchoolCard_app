@@ -36,6 +36,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -135,7 +136,12 @@ public class Fragment_main_five extends Fragment {
                             Log.d("TAG", "没有数据");
                         }
                     } else {
-                        Toast.makeText(requireContext(), "网络连接失败或账号异常", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "网络连接失败或账号异常,强制退出", Toast.LENGTH_SHORT).show();
+                        SharedPreferences pref = getActivity().getSharedPreferences("userInfo", MODE_PRIVATE);//将内容存放到userinfo的文档内
+                        editor = pref.edit();
+                        editor.remove("id");
+                        editor.commit();
+                        requireActivity().finish();
                     }
                 }).start();
     }

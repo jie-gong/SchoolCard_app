@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -118,6 +119,9 @@ public class Fragment_main_two extends Fragment {
                 .setUrl("/card/getNews")
                 .setJsonObject("studentid", sp1)
                 .setOkHttpLo(jsonObject -> {
+                    if (sp1.equals("")){
+                        Toast.makeText(requireContext(), "账号异常，请重新登录", Toast.LENGTH_SHORT).show();
+                    }
                     if (jsonObject.optString("code").equals("200")) {
                         beans = new Gson().fromJson(jsonObject.optJSONArray("data").toString(),
                                 new TypeToken<List<Announce_bean>>() {

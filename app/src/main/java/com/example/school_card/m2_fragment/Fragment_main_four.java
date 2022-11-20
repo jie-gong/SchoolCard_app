@@ -93,7 +93,7 @@ public class Fragment_main_four extends Fragment {
                                     return;
                                 }
                                 int h = 0;
-                                for (int i = 0; i < beans.size(); i++) {
+                                for (int i = 0; i < 10; i++) {
                                     View view = listAdapter.getView(i, null, ListViewThree);
                                     view.measure(1, 1);
                                     h += view.getMeasuredHeight();

@@ -61,12 +61,13 @@ public class XGMM extends AppCompatActivity {
                             String password = jsonObject1.optString("password");
 //                            Log.d("qweqwe", "upPass: " + password);
                             if (password.equals(mm1.getText().toString().trim())) {
-                                if (mm2.getText().toString().trim().equals(mm3.getText().toString().trim())) {
+                                if (mm2.getText().toString().equals(mm3.getText().toString())) {
                                     //修改密码
                                     new OkHttpTo()
                                             .setType("POST")
                                             .setUrl("/card/updatePass")
-                                            .setJsonObject("password", mm2.getText().toString().trim())
+                                            .setJsonObject("studentid", sp1)
+                                            .setJsonObject("password", mm2.getText().toString())
                                             .setOkHttpLo(jsonObject2 -> {
                                                 Intent intent = new Intent(this, LoginDlActivity.class);
                                                 startActivity(intent);

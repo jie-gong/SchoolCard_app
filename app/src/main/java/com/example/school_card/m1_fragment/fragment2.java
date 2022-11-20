@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,8 +46,9 @@ public class fragment2 extends Fragment {
         });
         //管理员登录
         admin.setOnClickListener(view1 -> {
-            Intent intent = new Intent(requireContext(), UserLogin.class);
-            startActivity(intent);
+            Toast.makeText(requireContext(), "教师登录暂未开放，敬请期待", Toast.LENGTH_SHORT).show();
+//            Intent intent = new Intent(requireContext(), UserLogin.class);
+//            startActivity(intent);
 //            getActivity().finish();
         });
     }

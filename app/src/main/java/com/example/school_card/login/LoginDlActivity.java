@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.school_card.Okhttp.OkHttpLo;
 import com.example.school_card.Okhttp.OkHttpTo;
 import com.example.school_card.R;
 import com.example.school_card.m2.MainActivity2;
@@ -22,6 +23,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class LoginDlActivity extends AppCompatActivity {
 
@@ -37,7 +39,6 @@ public class LoginDlActivity extends AppCompatActivity {
     private SharedPreferences.Editor editor;
     private static final String TAG = "login_DL";
     private CheckBox ch1;
-    private long time = 0;
 
 
     @Override
@@ -54,7 +55,6 @@ public class LoginDlActivity extends AppCompatActivity {
                 Toast.makeText(this, "账号或密码不能为空", Toast.LENGTH_SHORT).show();
             } else {
                 Okhttp();
-                finish();
             }
         });
         text1.setOnClickListener(v -> {
@@ -79,11 +79,23 @@ public class LoginDlActivity extends AppCompatActivity {
                             int studentid = jsonArray.getJSONObject(0).getInt("studentid");
                             Intent intent = new Intent(this, MainActivity2.class);
                             String student = String.valueOf(studentid);
-                            SharedPreferences pref = getSharedPreferences("userInfo", MODE_PRIVATE);//将内容存放到userinfo的文档内
-                            editor = pref.edit();
-                            editor.putString("id", student);
-                            editor.commit();
-                            startActivity(intent);
+                            new OkHttpTo()
+                                    .setUrl("/card/ban")
+                                    .setType("POST")
+                                    .setJsonObject("studentid", student)
+                                    .setOkHttpLo(jsonObject1 -> {
+                                        if (jsonObject1.optString("code").equals("200")) {
+                                            SharedPreferences pref = getSharedPreferences("userInfo", MODE_PRIVATE);//将内容存放到userinfo的文档内
+                                            editor = pref.edit();
+                                            editor.putString("id", student);
+                                            editor.commit();
+                                            Toast.makeText(this, "欢迎使用", Toast.LENGTH_SHORT).show();
+                                            startActivity(intent);
+                                            finish();
+                                        } else {
+                                            Toast.makeText(this, "账号异常，请联系管理员恢复", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }).start();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -116,6 +128,8 @@ public class LoginDlActivity extends AppCompatActivity {
             return true;
         });
     }
+
+    private long time = 0;
 
     //双击退出
     @Override

@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -182,7 +184,6 @@ public class MainActivity2 extends AppCompatActivity {
             Intent intent;
             switch (item.getItemId()) {
                 case R.id.grzx:
-//                    Toast.makeText(MainActivity2.this, "个人中心", Toast.LENGTH_SHORT).show();
                     viewpager.setAdapter(main2_adapter);
                     viewpager.setCurrentItem(5);
                     break;
@@ -278,6 +279,21 @@ public class MainActivity2 extends AppCompatActivity {
                 viewpager.setCurrentItem(4);
                 break;
         }
+    }
+
+    private long time = 0;
+    //双击退出
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        long mNowTime = System.currentTimeMillis();/**  获取第一次按键时间*/
+        if ((mNowTime - time) > 1000) {
+            Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+            time = mNowTime;
+        } else {
+            finish();
+            System.exit(0);
+        }
+        return true;
     }
 
     private void initView() {

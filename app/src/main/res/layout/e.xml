@@ -108,7 +108,7 @@
         android:layout_height="50dp"
         android:layout_margin="10dp"
         android:background="@drawable/lansebeijing"
-        android:text="退出"
+        android:text="退出登录"
         android:textColor="@color/white"
         android:textSize="18dp" />
 

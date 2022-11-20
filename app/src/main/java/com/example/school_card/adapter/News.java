@@ -43,7 +43,7 @@ public class News extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return beans.size();
+        return 10;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class News extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return i;
+        return 10;
     }
 
     @NonNull
